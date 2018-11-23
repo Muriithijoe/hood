@@ -6,3 +6,6 @@ from . import views
 urlpatterns=[
     url(r'^$',views.landing,name='landingPage'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

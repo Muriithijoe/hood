@@ -5,6 +5,7 @@ class Neighborhood(models.Model):
     neighborhood_name = models.CharField(max_length =30)
     location = models.CharField(max_length =50)
     occupants = models.IntegerField()
+    admin = models.ForeignKey(User)
 
     def create_neighborhood(self):
         self.save()
@@ -17,15 +18,15 @@ class Neighborhood(models.Model):
         neighborhood = cls.objects.get(id=neighborhood_id)
         return neighborhood
 
-class UserProfile(models.Models):
+class User(models.Model):
     name = models.CharField(max_length =30)
-    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null = True)
+    neighborhood = models.ForeignKey(Neighborhood)
     email = models.EmailField()
 
-class Business(models.Models):
+class Business(models.Model):
     business_name = models.CharField(max_length =50)
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
-    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null = True)
+    user = models.ForeignKey(User)
+    neighborhood = models.ForeignKey(Neighborhood)
     business_email = models.EmailField()
 
     def create_business(self):
