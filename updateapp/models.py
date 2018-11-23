@@ -5,7 +5,7 @@ class Neighborhood(models.Model):
     neighborhood_name = models.CharField(max_length =30)
     location = models.CharField(max_length =50)
     occupants = models.IntegerField()
-    admin = models.ForeignKey(User)
+    admin = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
 
     def create_neighborhood(self):
         self.save()
@@ -20,13 +20,13 @@ class Neighborhood(models.Model):
 
 class User(models.Model):
     name = models.CharField(max_length =30)
-    neighborhood = models.ForeignKey(Neighborhood)
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null = True)
     email = models.EmailField()
 
 class Business(models.Model):
     business_name = models.CharField(max_length =50)
     user = models.ForeignKey(User)
-    neighborhood = models.ForeignKey(Neighborhood)
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null = True)
     business_email = models.EmailField()
 
     def create_business(self):
@@ -42,7 +42,7 @@ class Business(models.Model):
 
 class Update(models.Model):
     title = models.CharField(max_length =30)
-    description = models.TextField(max_length = 100)
+    description = models.TextField(max_length = 500)
 
     def save_update(self):
         self.save()
