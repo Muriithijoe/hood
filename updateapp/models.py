@@ -39,3 +39,18 @@ class Business(models.Model):
     def find_business(cls, business_id):
         business = cls.objects.get(id=business_id)
         return business
+
+class Update(models.Model):
+    title = models.CharField(max_length =30)
+    description = models.TextField(max_length = 100)
+
+    def save_update(self):
+        self.save()
+
+    def delete_update(self):
+        self.delete()
+
+    @classmethod
+    def get_all(cls):
+        updates = cls.objects.all()
+        return updates

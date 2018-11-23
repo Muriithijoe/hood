@@ -1,3 +1,29 @@
 {%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load static %}
 
-<h1>Update begins</h1>
+{% block content %}
+{{block.super}}
+<div class="container">
+  <div class="row">
+    {% for update in updates %}
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">{{update.title}}</span>
+            <p>{{update.description}}</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
