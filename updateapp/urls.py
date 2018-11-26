@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url('^$',views.landing,name = 'landingPage'),
+    url('^facilities',views.facilities,name = 'facilities'),
     url('^business',views.business,name = 'business'),
     url('^neighborhood',views.neighborhood,name = 'neighborhood'),
     url('^health',views.health,name = 'health'),

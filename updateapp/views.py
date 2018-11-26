@@ -7,10 +7,12 @@ from .forms import ProfileForm,NeighborhoodForm,UpdateForm,BusinessForm,HealthFo
 
 @login_required(login_url='/accounts/login/')
 def landing(request):
-    business = Business.get_all()
-    neighborhood = Neighborhood.get_all()
-    updates = Update.get_all()
-    return render(request,'landing.html',{'business':business,'neighborhood':neighborhood, 'updates':updates})
+    post = Update.get_all()
+    return render(request,'landing.html',{'post':post})
+
+@login_required(login_url='/accounts/login/')
+def facilities(request):
+    return render(request,'facilities.html')
 
 @login_required(login_url='/accounts/login/')
 def business(request):
