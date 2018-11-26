@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+
+{% block content %}
+{{block.super}}
+<div class="container">
+  <div class="row">
+    {% for station in police %}
+    <div class="col-md-4">
+
+      <h3><b>{{station.Station}}</b> </h3>
+      <p><b>Police Contact</b>  : {{police.contacts}}</p>
+      <p> <b>Neighbourhood (located)</b> : {{police.neighborhood_contact}}</p>
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
