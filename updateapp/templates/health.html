@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+
+{% block content %}
+{{block.super}}
+<div class="container">
+  <div class="row">
+    {% for home in health %}
+    <div class="col-md-4">
+
+      <h2> {{home.contact_name}}</h2>
+      <p><b>Phone Number</b>  : {{home.contacts}}</p>
+      <h5><b>Hospital</b>  : {{home.hospital}}</h5>
+      <p> <b>Neighbourhood (located)</b> : {{home.neighborhood_contact}}</p>
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

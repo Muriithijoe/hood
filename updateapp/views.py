@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 from .models import Neighborhood,User,Business,Update,Health,Police
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,NeighborhoodForm,PostForm,BusinessForm,HealthForm
+from .forms import ProfileForm,NeighborhoodForm,UpdateForm,BusinessForm,HealthForm
 
 
 @login_required(login_url='/accounts/login/')
@@ -94,7 +94,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.writer = current_user
             post.save()
-        return redirect('indexPage')
+        return redirect('landingPage')
 
     else:
         form = PostForm()
