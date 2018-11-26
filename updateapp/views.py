@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
-from .models import Neighborhood,User,Business,Update,Health,Police
+from .models import Neighborhood,UserProfile,Business,Update,Health,Police
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm,NeighborhoodForm,UpdateForm,BusinessForm,HealthForm
 
@@ -78,27 +78,27 @@ def edit_profile(request):
         form = ProfileForm()
     return render(request,'edit_profile.html',{'form':form})
 
-def post(request,post_id):
+def update(request,update_id):
     try:
-        post = Post.objects.get(id = post_id)
+        update = Update.objects.get(id = post_id)
     except DoesNotExist:
         raise Http404()
-    return render(request,"post.html", {"post":post})
+    return render(request,"update.html", {"update":update})
 
 @login_required(login_url='/accounts/login/')
-def new_post(request):
+def new_update(request):
     current_user = request.user
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
+        form = UpdateForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.writer = current_user
-            post.save()
+            update = form.save(commit=False)
+            update.writer = current_user
+            update.save()
         return redirect('landingPage')
 
     else:
-        form = PostForm()
-    return render(request, 'new_post.html', {"form": form})
+        form = UpdateForm()
+    return render(request, 'new_update.html', {"form": form})
 
 @login_required(login_url='/accounts/login/')
 def new_business(request):
@@ -109,7 +109,7 @@ def new_business(request):
             business = form.save(commit=False)
             # business.user = current_user
             business.save()
-        return redirect('indexPage')
+        return redirect('landingPage')
 
     else:
         form = BusinessForm()

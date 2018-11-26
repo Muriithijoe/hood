@@ -35,7 +35,7 @@ class Neighborhood(models.Model):
         neighborhood = cls.objects.get(id=neighborhood_id)
         return neighborhood
 
-class User(models.Model):
+class UserProfile(models.Model):
     user_image = models.ImageField(upload_to = 'profile_pic/',null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null = True,related_name = 'user')
     neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, null=True)
@@ -57,7 +57,7 @@ class User(models.Model):
 class Business(models.Model):
     business_image = models.ImageField(upload_to = 'business/', null=True)
     business_name = models.CharField(max_length = 50)
-    user = models.ForeignKey(UserStatus,on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True)
     neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, null=True)
     business_email = models.EmailField()
 
@@ -90,7 +90,7 @@ class Business(models.Model):
         business = cls.objects.filter(business_name__icontains=search_term)
         return business
 
-class Post(models.Model):
+class Update(models.Model):
     post_image = models.ImageField(upload_to = 'post/', null=True)
     title = models.CharField(max_length = 50, null = True)
     description = models.TextField(max_length = 500,null=True)

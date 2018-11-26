@@ -1,5 +1,5 @@
 from django import forms
-from .models import User,Neighborhood,Business,Update,Health
+from .models import UserProfile,Neighborhood,Business,Update,Health
 
 class UpdateForm(forms.ModelForm):
     class Meta:
@@ -18,10 +18,10 @@ class HealthForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = UserStatus
+        model = UserProfile
         exclude = ['user']
 
 class NeighborhoodForm(forms.ModelForm):
     class Meta:
-        model = UserStatus
+        model = UserProfile
         exclude = ['user','user_image','user_email']
