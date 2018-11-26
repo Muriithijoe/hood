@@ -13,22 +13,22 @@ def landing(request):
     return render(request,'landing.html',{'business':business,'neighborhood':neighborhood, 'updates':updates})
 
 @login_required(login_url='/accounts/login/')
-def homebusiness(request):
+def business(request):
     business = Business.get_all()
     return render(request,'business.html',{'business':business})
 
 @login_required(login_url='/accounts/login/')
-def homeneighborhood(request):
+def neighborhood(request):
     neighborhood = Neighborhood.get_all()
     return render(request,'neighborhood.html',{'neighborhood':neighborhood,})
 
 @login_required(login_url='/accounts/login/')
-def homehealth(request):
+def health(request):
     health = Health.get_all()
     return render(request,'health.html',{'health':health,})
 
 @login_required(login_url='/accounts/login/')
-def homepolice(request):
+def police(request):
     police = Police.get_all()
     return render(request,'police.html',{'police':police,})
 
