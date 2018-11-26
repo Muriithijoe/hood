@@ -13,29 +13,24 @@ def landing(request):
     return render(request,'landing.html',{'business':business,'neighborhood':neighborhood, 'updates':updates})
 
 @login_required(login_url='/accounts/login/')
-def homepost(request):
-    post = Post.get_all()
-    return render(request,'homepost.html',{'post':post})
-
-@login_required(login_url='/accounts/login/')
 def homebusiness(request):
     business = Business.get_all()
-    return render(request,'homebusiness.html',{'business':business})
+    return render(request,'business.html',{'business':business})
 
 @login_required(login_url='/accounts/login/')
 def homeneighborhood(request):
     neighborhood = Neighborhood.get_all()
-    return render(request,'homeneighborhood.html',{'neighborhood':neighborhood,})
+    return render(request,'neighborhood.html',{'neighborhood':neighborhood,})
 
 @login_required(login_url='/accounts/login/')
 def homehealth(request):
     health = Health.get_all()
-    return render(request,'homehealth.html',{'health':health,})
+    return render(request,'health.html',{'health':health,})
 
 @login_required(login_url='/accounts/login/')
 def homepolice(request):
     police = Police.get_all()
-    return render(request,'homepolice.html',{'police':police,})
+    return render(request,'police.html',{'police':police,})
 
 def profile(request):
     current_user = request.user
@@ -62,7 +57,7 @@ def change_profile(request,user):
 
             prof.save()
             print(prof)
-        return redirect('indexPage')
+        return redirect('landingPage')
     elif User.objects.get(user=current_user):
         profile = User.objects.get(user=current_user)
         form = ProfileForm(instance=profile)
@@ -160,7 +155,7 @@ def new_health(request):
             health = form.save(commit=False)
             health.user = current_user
             health.save()
-        return redirect('indexPage')
+        return redirect('landingPage')
 
     else:
         form = HealthForm()
