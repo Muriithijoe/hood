@@ -11,28 +11,43 @@ the neighborhood.Information about nearby businesses, police and hospitals is al
 
 ## Behaviour Driven Development
 The program should return all projects on the directories page
+
 Given:All projects
+
 When: Url is changed to directory page
+
 Then: All projects are displayed
 
 Program should show the project with the highest number of votes on the caraousel on the home page
+
 Given:A Project with the highest votes
+
 When: Home page is accessed
+
 Then: Project with highest votes is displayed.
 
 Admin site should be displayed when "admin/" url is chosen
+
 Given: An admin url
+
 When: User enters admin url in browser
+
 Then: Admin Login is displayed
 
 User authentication occurs when Admin tries to Login
+
 Given:Admin page is accessed
+
 When: User tries to login
+
 Then: User details are authenticated to confirm if user is an admin
 
 User session should end when logout url is chosen
+
 Given:Logout option is given
+
 When: User chooses logout option
+
 Then: User session is ended
 
 
